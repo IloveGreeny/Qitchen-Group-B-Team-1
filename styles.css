@@ -80,9 +80,19 @@ nav {
 
 /*Hero*/
 .hero {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 5rem 1.5rem 4rem;
+  min-height: calc(100vh - 62px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem max(1.5rem, calc((100% - 1100px) / 2 + 1.5rem));
+  background:
+    linear-gradient(90deg, rgba(20, 14, 10, 0.88) 0%, rgba(20, 14, 10, 0.55) 55%, rgba(20, 14, 10, 0.2) 100%),
+    url("images/rainbow-roll-uramaki.webp") center / cover no-repeat;
+  color: #fff;
+}
+
+.hero .eyebrow {
+  color: #e9c9a8;
 }
 
 .eyebrow {
@@ -94,21 +104,25 @@ nav {
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
   line-height: 1.05;
   font-weight: 700;
-  max-width: 40rem;
+  max-width: 48rem;
 }
 
 .hero h1 span {
-  color: var(--ember);
+  color: #f07a4c;
 }
 
 .hero .subtext {
   margin-top: 1.25rem;
   max-width: 32rem;
-  font-size: 1.1rem;
-  color: var(--ink-soft);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero .btn {
+  align-self: flex-start;
 }
 
 .btn {
@@ -124,6 +138,7 @@ nav {
 
 .btn:hover {
   background: #a5431f;
+  transform: translateY(-2px);
 }
 
 /*Shop*/
@@ -295,21 +310,71 @@ nav {
 
 /*About*/
 .about {
+  background: linear-gradient(180deg, var(--bg) 0%, #f3e7da 100%);
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.about-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
-  border-top: 1px solid var(--line);
+  padding: 5rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-media {
+  position: relative;
+  padding: 0 3rem 3rem 0;
+}
+
+.about-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px rgba(43, 33, 27, 0.18);
+}
+
+.about-media img:last-child {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  border: 6px solid var(--bg);
+  transform: rotate(4deg);
+  transition: transform 0.3s;
+}
+
+.about-media:hover img:last-child {
+  transform: rotate(0deg) scale(1.04);
 }
 
 .about h2 {
-  font-size: 1.75rem;
+  font-size: 2.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.about h2 span {
+  color: var(--ember);
+}
+
+.about-text p:not(.eyebrow) {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
   margin-bottom: 1rem;
 }
 
-.about p {
-  max-width: 42rem;
-  color: var(--ink-soft);
-  margin-bottom: 1rem;
+.about-text p:first-of-type + h2 + p::first-letter {
+  float: left;
+  font-size: 3.2rem;
+  line-height: 0.9;
+  font-weight: 700;
+  color: var(--ember);
+  margin: 0.2rem 0.5rem 0 0;
 }
 
 /*footer*/
@@ -395,6 +460,11 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
+
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -411,11 +481,8 @@ footer {
   }
 
   .hero {
-    padding: 3rem 1.5rem 2.5rem;
-  }
-
-  .hero h1 {
-    font-size: 2.25rem;
+    min-height: 85vh;
+    padding: 3rem 1.5rem;
   }
 
   .hero .subtext {
