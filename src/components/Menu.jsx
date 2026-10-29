@@ -7,6 +7,14 @@ const types = ['All', ...new Set(menu.map((item) => item.type))]
 
 export default function Menu() {
   const [activeType, setActiveType] = useState('All')
+  // { [itemId]: true } for every dish the user has hearted
+  const [favorites, setFavorites] = useState({})
+
+  function setFavorite(id, isOn) {
+    setFavorites((prev) => ({ ...prev, [id]: isOn }))
+  }
+
+  const favoriteCount = Object.values(favorites).filter(Boolean).length
 
   const visibleItems =
     activeType === 'All' ? menu : menu.filter((item) => item.type === activeType)
@@ -37,12 +45,17 @@ export default function Menu() {
       </div>
 
       <p className="mb-4 text-sm text-ink-soft" aria-live="polite">
-        Showing {visibleItems.length} of {menu.length} dishes
+        Showing {visibleItems.length} of {menu.length} dishes · {favoriteCount} saved
       </p>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {visibleItems.map((item) => (
-          <ProductCard key={item.id} {...item} />
+          <ProductCard
+            key={item.id}
+            {...item}
+            isFavorite={Boolean(favorites[item.id])}
+            onFavoriteChange={(isOn) => setFavorite(item.id, isOn)}
+          />
         ))}
       </div>
     </section>
