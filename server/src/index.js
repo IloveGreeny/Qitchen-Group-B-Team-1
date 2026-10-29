@@ -3,6 +3,7 @@ import express from 'express'
 import { toNodeHandler } from 'better-auth/node'
 import { auth } from './auth.js'
 import menuRouter from './routes/menu.js'
+import checkoutRouter from './routes/checkout.js'
 import { requireAuth } from './middleware/requireAuth.js'
 
 const app = express()
@@ -20,6 +21,7 @@ app.get('/api/health', (req, res) => {
 })
 
 app.use('/api/menu', menuRouter)
+app.use('/api/checkout', checkoutRouter)
 
 // Example of a protected route: only works when signed in.
 // GET /api/me -> { user } or 401
