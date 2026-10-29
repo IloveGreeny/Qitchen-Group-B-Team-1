@@ -15,15 +15,26 @@ Qitchen is a sushi restaurant landing page designed to showcase a menu of freshl
 
 ## Technologies
 
-- HTML5
+- React
+- Vite
 - CSS3
 
 ## Getting Started
 
 1. Clone or download the project.
-2. Open `index.html` in your browser.
-3. Explore the menu, restaurant information, and reservation form.
+2. Install dependencies: `npm install`
+3. Start the dev server: `npm run dev`, then open the URL it prints (usually http://localhost:5173).
+4. Build for production with `npm run build` (output goes to `dist/`).
+
+## Project Structure
+
+- `index.html` — Vite entry page
+- `src/App.jsx` — page layout
+- `src/components/` — Header, Hero, Menu, ProductCard, Reservation, About, Footer
+- `src/data/` — menu items and navigation links
+- `src/styles.css` — styles and theme colors
+- `public/images/` — sushi photos
 
 ## Note
 
-Qitchen is a learning project focused on creating a clean, responsive restaurant website using HTML and CSS.
+Qitchen is a learning project focused on creating a clean, responsive restaurant website using React, Vite, and CSS.
