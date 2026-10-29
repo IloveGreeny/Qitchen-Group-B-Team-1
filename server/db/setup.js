@@ -4,7 +4,7 @@ import 'dotenv/config'
 import { readFile } from 'node:fs/promises'
 import { pool } from '../src/db.js'
 
-const files = ['schema.sql']
+const files = ['auth-schema.sql', 'schema.sql']
 
 for (const file of files) {
   const sql = await readFile(new URL(file, import.meta.url), 'utf8')
