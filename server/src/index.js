@@ -4,6 +4,7 @@ import { toNodeHandler } from 'better-auth/node'
 import { auth } from './auth.js'
 import menuRouter from './routes/menu.js'
 import checkoutRouter from './routes/checkout.js'
+import webhookRouter from './routes/webhook.js'
 import { requireAuth } from './middleware/requireAuth.js'
 
 const app = express()
@@ -12,6 +13,10 @@ const PORT = process.env.PORT || 3000
 // Better Auth handles everything under /api/auth (sign-up, sign-in, sign-out, get-session).
 // It must come BEFORE express.json(), because it reads the request body itself.
 app.all('/api/auth/*splat', toNodeHandler(auth))
+
+// Stripe's webhook also needs the raw, unparsed body (to check its signature),
+// so it too must come BEFORE express.json().
+app.use('/api/stripe/webhook', webhookRouter)
 
 app.use(express.json())
 
