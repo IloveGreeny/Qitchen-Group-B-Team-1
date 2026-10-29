@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Qitchen design tokens — usable as bg-ink, text-ink-soft, border-line, etc. */
+@theme {
+  --color-ink: #111111;
+  --color-ink-soft: #6b6b6b;
+  --color-clay: #8a8a8a;
+  --color-line: #e7e7e7;
+  --color-surface-2: #f7f7f6;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink;
+  }
+}
