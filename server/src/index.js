@@ -1,8 +1,9 @@
 import 'dotenv/config' // loads server/.env into process.env (local only)
 import express from 'express'
-import { toNodeHandler, fromNodeHeaders } from 'better-auth/node'
+import { toNodeHandler } from 'better-auth/node'
 import { auth } from './auth.js'
 import menuRouter from './routes/menu.js'
+import { requireAuth } from './middleware/requireAuth.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -22,10 +23,8 @@ app.use('/api/menu', menuRouter)
 
 // Example of a protected route: only works when signed in.
 // GET /api/me -> { user } or 401
-app.get('/api/me', async (req, res) => {
-  const session = await auth.api.getSession({ headers: fromNodeHeaders(req.headers) })
-  if (!session) return res.status(401).json({ error: 'Not signed in' })
-  res.json({ user: session.user })
+app.get('/api/me', requireAuth, (req, res) => {
+  res.json({ user: req.user })
 })
 
 // Any error passed to next(error) ends up here
