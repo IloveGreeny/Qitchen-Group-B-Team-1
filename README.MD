@@ -113,9 +113,10 @@ Deleting a user also deletes their accounts and sessions (`ON DELETE CASCADE`). 
 4. In a third terminal, forward Stripe's webhooks to your local server with the [Stripe CLI](https://docs.stripe.com/stripe-cli):
    ```
    stripe login
-   stripe listen --forward-to localhost:3000/api/stripe/webhook
+   stripe listen --events checkout.session.completed,checkout.session.async_payment_succeeded,checkout.session.expired \
+     --forward-to localhost:3000/api/stripe/webhook
    ```
-   Copy the `whsec_...` value it prints into `STRIPE_WEBHOOK_SECRET` in `server/.env`, then restart the server.
+   Copy the `whsec_...` value it prints into `STRIPE_WEBHOOK_SECRET` in `server/.env`, then **restart the server**. It only reads `.env` when it starts.
 
 `.env` is listed in `.gitignore`, so secrets are never committed. Only `.env.example` (with placeholder values) is in git.
 
