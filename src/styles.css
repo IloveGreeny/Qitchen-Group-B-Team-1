@@ -9,12 +9,16 @@ html {
 }
 
 :root {
-  --bg: #faf6f1;
-  --ink: #2b211b;
-  --ink-soft: #6b5d52;
-  --clay: #a07856;
-  --ember: #c2532b;
-  --line: #e5dcd2;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f7f7f6;
+  --ink: #111111;
+  --ink-soft: #6b6b6b;
+  --clay: #8a8a8a;
+  --accent: #111111;
+  --btn: #111111;
+  --btn-ink: #ffffff;
+  --line: #e7e7e7;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -62,7 +66,7 @@ nav {
 }
 
 .logo span {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 .nav-links {
@@ -75,7 +79,7 @@ nav {
 }
 
 .nav-links a:hover {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 /*Hero*/
@@ -86,13 +90,13 @@ nav {
   justify-content: center;
   padding: 4rem max(1.5rem, calc((100% - 1100px) / 2 + 1.5rem));
   background:
-    linear-gradient(90deg, rgba(20, 14, 10, 0.88) 0%, rgba(20, 14, 10, 0.55) 55%, rgba(20, 14, 10, 0.2) 100%),
-    url("images/rainbow-roll-uramaki.webp") center / cover no-repeat;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.15) 100%),
+    url("/images/rainbow-roll-uramaki.webp") center / cover no-repeat;
   color: #fff;
 }
 
 .hero .eyebrow {
-  color: #e9c9a8;
+  color: #b9b2a8;
 }
 
 .eyebrow {
@@ -111,7 +115,8 @@ nav {
 }
 
 .hero h1 span {
-  color: #f07a4c;
+  color: #ffffff;
+  font-style: italic;
 }
 
 .hero .subtext {
@@ -123,21 +128,27 @@ nav {
 
 .hero .btn {
   align-self: flex-start;
+  background: #ffffff;
+  color: #111111;
+}
+
+.hero .btn:hover {
+  background: #e7e7e7;
 }
 
 .btn {
   display: inline-block;
   margin-top: 2rem;
   padding: 0.85rem 1.75rem;
-  background: var(--ember);
-  color: white;
+  background: var(--btn);
+  color: var(--btn-ink);
   font-weight: 600;
   border-radius: 999px;
   transition: transform 0.15s, background 0.15s;
 }
 
 .btn:hover {
-  background: #a5431f;
+  background: #333333;
   transform: translateY(-2px);
 }
 
@@ -161,14 +172,16 @@ nav {
 }
 
 .product-card {
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 1rem;
   overflow: hidden;
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.15s, border-color 0.15s;
 }
 
 .product-card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: #d4d4d4;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .product-card img {
@@ -192,7 +205,7 @@ nav {
 .product-card .price {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--ember);
+  color: var(--accent);
   margin: 0.5rem 1rem 1rem;
 }
 
@@ -216,7 +229,7 @@ nav {
 }
 
 .reservation-header h2 span {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 .reservation-intro {
@@ -233,8 +246,8 @@ nav {
   border: 1px solid var(--line);
   border-radius: 1rem;
   padding: 2.5rem;
-  background: #ffffff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  background: var(--surface);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
 }
 
 .reservation-form-card {
@@ -275,9 +288,10 @@ nav {
   font-size: 0.95rem;
   font-family: inherit;
   color: var(--ink);
-  background: var(--bg);
+  background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: 0.6rem;
+  color-scheme: light;
   transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
 }
 
@@ -290,13 +304,22 @@ nav {
 .form-group textarea:focus {
   outline: none;
   background: #ffffff;
-  border-color: var(--ember);
-  box-shadow: 0 0 0 3px rgba(194, 83, 43, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 85px;
+}
+
+.res-confirmation {
+  margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.6rem;
+  color: var(--ink);
+  background: var(--surface-2);
 }
 
 .res-submit-btn {
@@ -310,7 +333,7 @@ nav {
 
 /*About*/
 .about {
-  background: linear-gradient(180deg, var(--bg) 0%, #f3e7da 100%);
+  background: linear-gradient(180deg, var(--bg) 0%, #f7f7f6 100%);
   border-top: 1px solid var(--line);
   overflow: hidden;
 }
@@ -335,7 +358,7 @@ nav {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 1.25rem;
-  box-shadow: 0 20px 40px rgba(43, 33, 27, 0.18);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .about-media img:last-child {
@@ -358,7 +381,7 @@ nav {
 }
 
 .about h2 span {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 .about-text p:not(.eyebrow) {
@@ -373,14 +396,23 @@ nav {
   font-size: 3.2rem;
   line-height: 0.9;
   font-weight: 700;
-  color: var(--ember);
+  color: var(--accent);
   margin: 0.2rem 0.5rem 0 0;
 }
 
 /*footer*/
 footer {
   border-top: 1px solid var(--line);
-  background: white;
+  background: #f7f7f6;
+}
+
+footer .copyright {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--clay);
 }
 
 .footer-grid {
@@ -398,7 +430,7 @@ footer {
 }
 
 .footer-logo span {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 .footer-brand p:last-child {
@@ -430,7 +462,7 @@ footer {
 }
 
 .footer-links a:hover {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 .footer-hours p,
@@ -447,7 +479,7 @@ footer {
 }
 
 .footer-hours .closed-tag strong {
-  color: var(--ember);
+  color: var(--accent);
 }
 
 /*responsive*/
