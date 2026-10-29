@@ -42,62 +42,8 @@ ul {
   list-style: none;
 }
 
-/*Header*/
-header {
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  z-index: 10;
-}
 
-nav {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.logo span {
-  color: var(--accent);
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  transition: color 0.15s;
-}
-
-.nav-links a:hover {
-  color: var(--accent);
-}
-
-/*Hero*/
-.hero {
-  min-height: calc(100vh - 62px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4rem max(1.5rem, calc((100% - 1100px) / 2 + 1.5rem));
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.15) 100%),
-    url("/images/rainbow-roll-uramaki.webp") center / cover no-repeat;
-  color: #fff;
-}
-
-.hero .eyebrow {
-  color: #b9b2a8;
-}
 
 .eyebrow {
   font-size: 0.8rem;
@@ -107,34 +53,10 @@ nav {
   margin-bottom: 1rem;
 }
 
-.hero h1 {
-  font-size: clamp(2.75rem, 7vw, 5.5rem);
-  line-height: 1.05;
-  font-weight: 700;
-  max-width: 48rem;
-}
 
-.hero h1 span {
-  color: #ffffff;
-  font-style: italic;
-}
 
-.hero .subtext {
-  margin-top: 1.25rem;
-  max-width: 32rem;
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-}
 
-.hero .btn {
-  align-self: flex-start;
-  background: #ffffff;
-  color: #111111;
-}
 
-.hero .btn:hover {
-  background: #e7e7e7;
-}
 
 .btn {
   display: inline-block;
@@ -500,26 +422,9 @@ footer .copyright {
 }
 
 @media (max-width: 640px) {
-  nav {
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1rem;
-  }
 
-  .nav-links {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
-  .hero {
-    min-height: 85vh;
-    padding: 3rem 1.5rem;
-  }
 
-  .hero .subtext {
-    font-size: 1rem;
-  }
 
   .product-grid {
     grid-template-columns: 1fr;
