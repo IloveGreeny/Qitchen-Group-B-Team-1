@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://YOUR-RAILWAY-APP.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/order/:path*",
+      "destination": "/index.html"
     }
   ]
 }

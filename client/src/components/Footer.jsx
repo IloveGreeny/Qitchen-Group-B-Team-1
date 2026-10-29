@@ -16,7 +16,7 @@ export default function Footer() {
           <h3 className={headingClass}>Navigation</h3>
           <ul className="flex flex-col gap-2">
             {navLinks
-              .filter((link) => link.href !== '#contact')
+              .filter((link) => link.href !== '/#contact')
               .map((link) => (
                 <li key={link.href}>
                   <a href={link.href} className="text-[0.9rem] text-ink-soft transition-colors hover:text-ink">
