@@ -5,6 +5,7 @@ import { auth } from './auth.js'
 import menuRouter from './routes/menu.js'
 import checkoutRouter from './routes/checkout.js'
 import webhookRouter from './routes/webhook.js'
+import ordersRouter from './routes/orders.js'
 import { requireAuth } from './middleware/requireAuth.js'
 
 const app = express()
@@ -27,6 +28,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/menu', menuRouter)
 app.use('/api/checkout', checkoutRouter)
+app.use('/api/orders', ordersRouter)
 
 // Example of a protected route: only works when signed in.
 // GET /api/me -> { user } or 401
