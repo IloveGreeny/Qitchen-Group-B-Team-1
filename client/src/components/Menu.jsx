@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import ProductCard from './ProductCard.jsx'
+import AuthDialog from './AuthDialog.jsx'
+import { startCheckout } from '../lib/checkout.js'
 
 export default function Menu() {
   const [menu, setMenu] = useState([])
@@ -7,6 +9,9 @@ export default function Menu() {
   const [activeType, setActiveType] = useState('All')
   // { [itemId]: true } for every dish the user has hearted
   const [favorites, setFavorites] = useState({})
+  const [orderingId, setOrderingId] = useState(null) // which dish is being sent to Stripe
+  const [orderError, setOrderError] = useState('')
+  const [isAuthOpen, setIsAuthOpen] = useState(false)
 
   // Load the dishes from our API (which reads them from Postgres) once, on first render
   useEffect(() => {
@@ -31,8 +36,35 @@ export default function Menu() {
     }
   }, [])
 
+  // Pressing Back on Stripe's page can restore this page from the browser's cache
+  // with a button still saying "Redirecting…", so reset it when that happens
+  useEffect(() => {
+    function handlePageShow(event) {
+      if (event.persisted) setOrderingId(null)
+    }
+    window.addEventListener('pageshow', handlePageShow)
+    return () => window.removeEventListener('pageshow', handlePageShow)
+  }, [])
+
   function setFavorite(id, isOn) {
     setFavorites((prev) => ({ ...prev, [id]: isOn }))
+  }
+
+  async function handleOrder(id) {
+    setOrderError('')
+    setOrderingId(id)
+    try {
+      await startCheckout([{ menuItemId: id, quantity: 1 }])
+      // On success the browser is already on its way to Stripe
+    } catch (error) {
+      setOrderingId(null)
+      if (error.status === 401) {
+        setOrderError('Please sign in to place an order.')
+        setIsAuthOpen(true)
+      } else {
+        setOrderError(error.message)
+      }
+    }
   }
 
   // 'All' plus every type that appears in the data, in order
@@ -80,6 +112,12 @@ export default function Menu() {
             Showing {visibleItems.length} of {menu.length} dishes · {favoriteCount} saved
           </p>
 
+          {orderError && (
+            <p className="mb-4 rounded-[0.6rem] border border-ink bg-surface-2 px-4 py-3 text-sm" role="alert">
+              {orderError}
+            </p>
+          )}
+
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {visibleItems.map((item) => (
               <ProductCard
@@ -87,11 +125,22 @@ export default function Menu() {
                 {...item}
                 isFavorite={Boolean(favorites[item.id])}
                 onFavoriteChange={(isOn) => setFavorite(item.id, isOn)}
+                onOrder={() => handleOrder(item.id)}
+                isOrdering={orderingId === item.id}
               />
             ))}
           </div>
         </>
       )}
+
+      {/* Same sign-in pop-up as the header, opened when an order needs a signed-in user */}
+      <AuthDialog
+        isOpen={isAuthOpen}
+        onClose={() => {
+          setIsAuthOpen(false)
+          setOrderError('')
+        }}
+      />
     </section>
   )
 }
