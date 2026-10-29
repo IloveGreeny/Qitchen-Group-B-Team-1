@@ -17,7 +17,7 @@ Qitchen is a sushi restaurant landing page designed to showcase a menu of freshl
 
 - React
 - Vite
-- CSS3
+- Tailwind CSS
 
 ## Getting Started
 
@@ -30,11 +30,11 @@ Qitchen is a sushi restaurant landing page designed to showcase a menu of freshl
 
 - `index.html` — Vite entry page
 - `src/App.jsx` — page layout
-- `src/components/` — Header, Hero, Menu, ProductCard, Reservation, About, Footer
+- `src/components/` — Header, Hero, Menu, ProductCard, FavoriteToggle, Reservation, About, Footer
 - `src/data/` — menu items and navigation links
-- `src/styles.css` — styles and theme colors
+- `src/index.css` — Tailwind import and theme colors
 - `public/images/` — sushi photos
 
 ## Note
 
-Qitchen is a learning project focused on creating a clean, responsive restaurant website using React, Vite, and CSS.
+Qitchen is a learning project focused on creating a clean, responsive restaurant website using React, Vite, and Tailwind CSS.
