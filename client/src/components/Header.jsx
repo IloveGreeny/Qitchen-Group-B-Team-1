@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-white">
       <nav className="mx-auto flex max-w-[1100px] flex-col items-center gap-3 p-4 sm:flex-row sm:justify-between sm:px-6">
-        <a href="#home" className="text-[1.4rem] font-bold">
+        <a href="/#home" className="text-[1.4rem] font-bold">
           <span>Q</span>itchen
         </a>
 
